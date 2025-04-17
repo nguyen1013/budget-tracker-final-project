@@ -14,14 +14,16 @@ function App() {
   );
 
   if (isLoading) {
-    return <p>Loading transactions...</p>;
+    return <p className='loading'>Loading transactions...</p>;
   }
 
   return (
-    <div className='container'>
-      <h1>Budget Tracker</h1>
-      <Header />
-      <TransactionForm setOptimisticTransactions={setOptimisticTransactions} />
+    <div>
+      <div className='container'>
+        <h1>Budget Tracker</h1>
+        <Header />
+        <TransactionForm setOptimisticTransactions={setOptimisticTransactions} />        
+      </div>
       <TransactionList optimisticTransactions={optimisticTransactions} />
     </div>
   );

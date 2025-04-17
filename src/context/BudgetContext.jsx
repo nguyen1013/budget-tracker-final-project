@@ -46,7 +46,8 @@ export default function BudgetProvider({ children }) {
   const [isLoading, setIsLoading] = useState(true); // for initial data fetch
 
   useEffect(() => {
-    async function fetchTransactions() {
+    setIsLoading(true)
+    async function fetchTransactions() {   
       try {
         const transactions = await getTransactionFromServer();
         dispatch({ type: "SET_TRANSACTIONS", payload: transactions });

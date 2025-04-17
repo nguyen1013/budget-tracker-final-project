@@ -29,11 +29,11 @@ export default function Transaction({ transaction }) {
     if (errors.length) {
       setInvalidInput(true);
       return {
-        errors
+        errors,
       };
     }
 
-    if (type === "expense") newAmount = -newAmount
+    if (type === "expense") newAmount = -newAmount;
 
     setInvalidInput(false);
     const newTransaction = { ...transaction, amount: newAmount };
@@ -55,7 +55,7 @@ export default function Transaction({ transaction }) {
 
   return (
     <>
-          <Modal open={invalidInput} onClose={handleError}>
+      <Modal open={invalidInput} onClose={handleError}>
         {invalidInput && (
           <Error
             title="An error occurred"
@@ -66,8 +66,8 @@ export default function Transaction({ transaction }) {
       </Modal>
       <li className={transaction.amount > 0 ? "income" : "expense"}>
         {isEditing ? (
-          <form action={formAction} style={{ display: "inline" }}>
-            <label htmlFor="amount">{transaction.description}{" "}</label>
+          <form action={formAction} className="transaction-edit" >
+            <label htmlFor="amount">{transaction.description} </label>
             <input type="number" name="amount" defaultValue={currentAmount} />
             <button type="submit">Save</button>
             <button type="button" onClick={handleClick}>
