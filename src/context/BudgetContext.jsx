@@ -1,5 +1,5 @@
 import { createContext, useEffect, useReducer, useState } from "react";
-import { getTransaction, addTransactionToServer, deleteTransactionFromServer } from "../http"
+import { getTransactionFromServer, addTransactionToServer, deleteTransactionFromServer, updateTransactionOnServer } from "../http"
 
 export const BudgetContext = createContext(null);
 
@@ -29,6 +29,13 @@ function BudgetReducer(state, action) {
         ...state,
         transactions: action.payload, // Replace transactions completely
       };
+    case "UPDATE_TRANSACTION":
+      return {
+        ...state,
+        transactions: state.transactions.map((t) =>
+          t.id === action.payload.id ? action.payload : t
+        ),
+      };      
     default:
       return state;
   }
@@ -41,7 +48,7 @@ export default function BudgetProvider({ children }) {
   useEffect(() => {
     async function fetchTransactions() {
       try {
-        const transactions = await getTransaction();
+        const transactions = await getTransactionFromServer();
         dispatch({ type: "SET_TRANSACTIONS", payload: transactions });
       } catch (error) {
         console.error("Failed to fetch transactions:", error);
@@ -54,7 +61,6 @@ export default function BudgetProvider({ children }) {
   }, []);
 
   async function addTransaction(transaction) {
-    console.log(transaction)
     try {
       const data = await addTransactionToServer(transaction);
       dispatch({ type: "ADD_TRANSACTION", payload: { ...transaction, id: data.id } });      
@@ -74,6 +80,16 @@ export default function BudgetProvider({ children }) {
     }
   }
 
+  async function updateTransaction(updatedTransaction) {
+    try {
+      await updateTransactionOnServer(updatedTransaction); // send to server
+      dispatch({ type: "UPDATE_TRANSACTION", payload: updatedTransaction }); // update local state
+    } catch (error) {
+      console.error("Error updating transaction:", error);
+    }
+  }
+  
+
   const saldo = state.transactions.reduce(
     (prev, transaction) => prev + Number(transaction.amount),
     0
@@ -86,6 +102,7 @@ export default function BudgetProvider({ children }) {
         saldo,
         addTransaction,
         deleteTransaction,
+        updateTransaction, 
         isLoading,        
       }}
     >
