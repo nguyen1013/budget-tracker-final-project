@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useOptimistic } from 'react';
 import './budgettracker.css';
 import TransactionForm from './components/TransactionForm';
 import TransactionList from './components/TransactionList';
@@ -6,9 +6,14 @@ import Header from './components/Header';
 import { BudgetContext } from './context/BudgetContext';
 
 function App() {
-  const { loading } = useContext(BudgetContext);
+  const { transactions, isLoading } = useContext(BudgetContext);
 
-  if (loading) {
+  const [optimisticTransactions, setOptimisticTransactions] = useOptimistic(
+    transactions,
+    (prev, newItem) => [...prev, newItem]
+  );
+
+  if (isLoading) {
     return <p>Loading transactions...</p>;
   }
 
@@ -16,8 +21,8 @@ function App() {
     <div className='container'>
       <h1>Budget Tracker</h1>
       <Header />
-      <TransactionForm />
-      <TransactionList />
+      <TransactionForm setOptimisticTransactions={setOptimisticTransactions} />
+      <TransactionList optimisticTransactions={optimisticTransactions} />
     </div>
   );
 }

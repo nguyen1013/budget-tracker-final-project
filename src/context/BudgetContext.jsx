@@ -5,6 +5,9 @@ export const BudgetContext = createContext(null);
 
 const initialState = {
   transactions: [],
+  saldo: 0,
+  addTransaction: () => {},
+  deleteTransaction: () => {},
 };
 
 function BudgetReducer(state, action) {
@@ -31,10 +34,9 @@ function BudgetReducer(state, action) {
   }
 }
 
-
 export default function BudgetProvider({ children }) {
   const [state, dispatch] = useReducer(BudgetReducer, initialState);
-  const [loading, setLoading] = useState(true); // for initial data fetch
+  const [isLoading, setIsLoading] = useState(true); // for initial data fetch
 
   useEffect(() => {
     async function fetchTransactions() {
@@ -44,7 +46,7 @@ export default function BudgetProvider({ children }) {
       } catch (error) {
         console.error("Failed to fetch transactions:", error);
       } finally {
-        setLoading(false);
+        setIsLoading(false);
       }
     }
 
@@ -52,15 +54,8 @@ export default function BudgetProvider({ children }) {
   }, []);
 
   async function addTransaction(transaction) {
-    // Optimistically add to UI with temporary ID
-    const tempId = Date.now();
-    const tempTransaction = { ...transaction, id: tempId };
-    dispatch({ type: "ADD_TRANSACTION", payload: tempTransaction });
-
     try {
       const data = await addTransactionToServer(transaction);
-      // Replace temporary ID with server-assigned ID
-      dispatch({ type: "DELETE_TRANSACTION", payload: tempId });
       dispatch({ type: "ADD_TRANSACTION", payload: { ...transaction, id: data.id } });
     } catch (error) {
       console.error("Error adding transaction:", error);
@@ -90,7 +85,7 @@ export default function BudgetProvider({ children }) {
         saldo,
         addTransaction,
         deleteTransaction,
-        loading,        
+        isLoading,        
       }}
     >
       {children}

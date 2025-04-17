@@ -4,7 +4,7 @@ import Modal from "./Modal";
 import Error from "./Error";
 import SubmitButton from "./SubmitButton";
 
-export default function TransactionForm() {
+export default function TransactionForm({ setOptimisticTransactions }) {
   const { addTransaction } = useContext(BudgetContext);
   const [invalidInput, setInvalidInput] = useState(false);
 
@@ -37,23 +37,30 @@ export default function TransactionForm() {
       };
     }
 
+    setInvalidInput(false);
+
+    const tempId = Date.now();
     const transaction = {
+      id: tempId, 
       type: category === "salary" ? "income" : "expense",
       amount: category === "salary" ? amount : -amount,
       description,
       date: newDate,
       category,
     };
-
-    setInvalidInput(false);
+    
+    setOptimisticTransactions(transaction);
     await addTransaction(transaction);
 
     return { errors: null };
   }
 
-  const [formState, formAction, pending] = useActionState(handleCreateTransaction, {
-    errors: null,
-  });
+  const [formState, formAction, pending] = useActionState(
+    handleCreateTransaction,
+    {
+      errors: null,
+    }
+  );
 
   function handleError() {
     setInvalidInput(false);
@@ -96,7 +103,6 @@ export default function TransactionForm() {
         </select>
 
         <SubmitButton />
-
       </form>
     </>
   );
