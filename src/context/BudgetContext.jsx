@@ -54,13 +54,14 @@ export default function BudgetProvider({ children }) {
   }, []);
 
   async function addTransaction(transaction) {
+    console.log(transaction)
     try {
       const data = await addTransactionToServer(transaction);
-      dispatch({ type: "ADD_TRANSACTION", payload: { ...transaction, id: data.id } });
+      dispatch({ type: "ADD_TRANSACTION", payload: { ...transaction, id: data.id } });      
     } catch (error) {
       console.error("Error adding transaction:", error);
       // Revert the optimistic update
-      dispatch({ type: "DELETE_TRANSACTION", payload: tempId });
+      dispatch({ type: "DELETE_TRANSACTION", payload: transaction.id });
     } 
   }
 
