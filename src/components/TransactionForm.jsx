@@ -1,22 +1,40 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useActionState } from "react";
 import { BudgetContext } from "../context/BudgetContext";
 import Modal from "./Modal";
 import Error from "./Error";
+import SubmitButton from "./SubmitButton";
 
 export default function TransactionForm() {
-  const { addTransaction, addingTransaction } = useContext(BudgetContext);
+  const { addTransaction } = useContext(BudgetContext);
   const [invalidInput, setInvalidInput] = useState(false);
 
-  function handleAdd(event) {
-    event.preventDefault();
-    const amount = parseFloat(event.target.amount.value);
-    const category = event.target.category.value;
-    const description = event.target.description.value;
+  async function handleCreateTransaction(prevFormState, formData) {
+    const amount = formData.get("amount");
+    const category = formData.get("category");
+    const description = formData.get("description");
     const newDate = new Date().toISOString().slice(0, 10);
 
-    if (!amount || !description) {
+    let errors = [];
+
+    if (isNaN(amount) || amount <= 0) {
+      errors.push("Please input a valid positive value.");
+    }
+
+    if (!description) {
+      errors.push("Please input valid description.");
+    }
+
+    if (errors.length) {
       setInvalidInput(true);
-      return;
+      return {
+        errors,
+        enterValues: {
+          amount,
+          description,
+          category,
+          newDate,
+        },
+      };
     }
 
     const transaction = {
@@ -27,9 +45,15 @@ export default function TransactionForm() {
       category,
     };
 
-    addTransaction(transaction);
-    event.target.reset();
+    setInvalidInput(false);
+    await addTransaction(transaction);
+
+    return { errors: null };
   }
+
+  const [formState, formAction, pending] = useActionState(handleCreateTransaction, {
+    errors: null,
+  });
 
   function handleError() {
     setInvalidInput(false);
@@ -41,18 +65,27 @@ export default function TransactionForm() {
         {invalidInput && (
           <Error
             title="An error occurred"
-            message="Invalid input value"
+            errors={formState.errors}
             onConfirm={handleError}
           />
         )}
       </Modal>
 
-      <form onSubmit={handleAdd}>
+      <form action={formAction}>
         <label htmlFor="description">Description</label>
-        <input id="description" name="description" />
+        <input
+          id="description"
+          name="description"
+          defaultValue={formState.enterValues?.description}
+        />
 
         <label htmlFor="amount">Amount</label>
-        <input id="amount" name="amount" type="number" />
+        <input
+          id="amount"
+          name="amount"
+          type="number"
+          defaultValue={formState.enterValues?.amount}
+        />
 
         <label htmlFor="category">Category</label>
         <select id="category" name="category">
@@ -62,11 +95,9 @@ export default function TransactionForm() {
           <option value="magazines">Magazines</option>
         </select>
 
-        <button type="submit" disabled={addingTransaction}>
-          {addingTransaction ? "Adding..." : "Add Transaction"}
-        </button>
+        <SubmitButton />
+
       </form>
     </>
   );
 }
-

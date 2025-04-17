@@ -35,7 +35,6 @@ function BudgetReducer(state, action) {
 export default function BudgetProvider({ children }) {
   const [state, dispatch] = useReducer(BudgetReducer, initialState);
   const [loading, setLoading] = useState(true); // for initial data fetch
-  const [addingTransaction, setAddingTransaction] = useState(false); // for form button
 
   useEffect(() => {
     async function fetchTransactions() {
@@ -53,8 +52,6 @@ export default function BudgetProvider({ children }) {
   }, []);
 
   async function addTransaction(transaction) {
-    setAddingTransaction(true);
-
     // Optimistically add to UI with temporary ID
     const tempId = Date.now();
     const tempTransaction = { ...transaction, id: tempId };
@@ -69,9 +66,7 @@ export default function BudgetProvider({ children }) {
       console.error("Error adding transaction:", error);
       // Revert the optimistic update
       dispatch({ type: "DELETE_TRANSACTION", payload: tempId });
-    } finally {
-      setAddingTransaction(false);
-    }
+    } 
   }
 
   async function deleteTransaction(transactionId) {
@@ -95,8 +90,7 @@ export default function BudgetProvider({ children }) {
         saldo,
         addTransaction,
         deleteTransaction,
-        loading,
-        addingTransaction,
+        loading,        
       }}
     >
       {children}
