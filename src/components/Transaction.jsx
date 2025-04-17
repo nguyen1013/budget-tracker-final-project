@@ -1,6 +1,8 @@
 import { useContext, useState, useActionState } from "react";
 import { BudgetContext } from "../context/BudgetContext";
 import Confirm from "./Confirm";
+import Modal from "./Modal";
+import Error from "./Error";
 
 export default function Transaction({ transaction }) {
   const { deleteTransaction, updateTransaction } = useContext(BudgetContext);
@@ -47,8 +49,21 @@ export default function Transaction({ transaction }) {
     setIsEditing(false);
   }
 
+  function handleError() {
+    setInvalidInput(false);
+  }
+
   return (
     <>
+          <Modal open={invalidInput} onClose={handleError}>
+        {invalidInput && (
+          <Error
+            title="An error occurred"
+            errors={formState.errors}
+            onConfirm={handleError}
+          />
+        )}
+      </Modal>
       <li className={transaction.amount > 0 ? "income" : "expense"}>
         {isEditing ? (
           <form action={formAction} style={{ display: "inline" }}>
