@@ -3,6 +3,7 @@ import { BudgetContext } from "../context/BudgetContext";
 import Confirm from "./Confirm";
 import Modal from "./Modal";
 import Error from "./Error";
+import { convertDateFormat } from "../utilities/helper"
 
 export default function Transaction({ transaction }) {
   const { deleteTransaction, updateTransaction } = useContext(BudgetContext);
@@ -11,6 +12,7 @@ export default function Transaction({ transaction }) {
   const [invalidInput, setInvalidInput] = useState(false);
 
   const transactionDate = transaction.date.slice(0, 10)
+  const formattedDate = convertDateFormat(transactionDate);
 
   let currentAmount =
     Number(transaction.amount) > 0
@@ -84,7 +86,7 @@ export default function Transaction({ transaction }) {
             >
               <p>{transaction.description}{" "}</p>
               <p>{currentAmount}€</p>
-              <p>{transactionDate} </p>
+              <p>{formattedDate} </p>
             </div>                   
             <button onClick={() => setShowConfirm(true)}>X</button>
           </>
