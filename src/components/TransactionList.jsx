@@ -32,7 +32,6 @@ export default function TransactionList({ optimisticTransactions }) {
     <div>
       <h3>Transactions</h3>
 
-      {/* 🔍 Filter Controls */}
       <div className="filters">
         <label>
           Type:

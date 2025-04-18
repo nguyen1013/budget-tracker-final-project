@@ -125,3 +125,9 @@ button:hover {
   top: 40%;
   font-size: larger;
 }
+
+.transaction-description {
+  display: flex;
+  justify-content: space-between;
+  width: 250px;
+}

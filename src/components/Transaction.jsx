@@ -10,14 +10,16 @@ export default function Transaction({ transaction }) {
   const [isEditing, setIsEditing] = useState(false);
   const [invalidInput, setInvalidInput] = useState(false);
 
+  const transactionDate = transaction.date.slice(0, 10)
+
   let currentAmount =
     Number(transaction.amount) > 0
       ? Number(transaction.amount)
       : -Number(transaction.amount);
-  currentAmount = currentAmount.toFixed(0);
+  currentAmount = currentAmount.toFixed(0);  
 
   async function updateTransactionAction(prevFormState, formData) {
-    let newAmount = formData.get("amount");
+    let newAmount = formData.get("amount");    
     const type = transaction.type;
 
     let errors = [];
@@ -76,15 +78,14 @@ export default function Transaction({ transaction }) {
           </form>
         ) : (
           <>
-            <span
+            <div className="transaction-description"
               onClick={() => setIsEditing(true)}
               style={{ cursor: "pointer" }}
             >
-              {transaction.description}{" "}
-              {transaction.amount > 0
-                ? transaction.amount
-                : -transaction.amount}
-            </span>
+              <p>{transaction.description}{" "}</p>
+              <p>{currentAmount}€</p>
+              <p>{transactionDate} </p>
+            </div>                   
             <button onClick={() => setShowConfirm(true)}>X</button>
           </>
         )}
