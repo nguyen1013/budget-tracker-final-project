@@ -1,9 +1,13 @@
+import { useContext } from "react";
+import { BudgetContext } from "../../context/BudgetContext";
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, LineElement, PointElement, CategoryScale, LinearScale, Tooltip, Legend } from 'chart.js';
 
 ChartJS.register(LineElement, PointElement, CategoryScale, LinearScale, Tooltip, Legend);
 
-export default function LineChart({ transactions }) {
+export default function LineChart() {
+  const { transactions } = useContext(BudgetContext);
+
   const monthlySavings = {};
 
   transactions.forEach(t => {

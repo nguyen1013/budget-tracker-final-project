@@ -2,7 +2,6 @@
 
 :root {
   /* Colors */
-  /* HSL Color Mode(hue, saturation, lightness) */
   --first-color: #002F6C;
   --second-color: #D1DDEB; /* #f4f6f8*/
   --third-color: #215389;
@@ -15,7 +14,6 @@
 
   /* Font and Typography */
   --body-font: 'Roboto', sans-serif;
-
   --bigger-font-size: 48px;
   --big-font-size: 36px;
   --larger-font-size: 28px;
@@ -244,6 +242,11 @@ button:hover {
   background-color: #fff;
   color: #1a1a1a;
   border: 1px solid #999;
+}
+
+.chart-selector label {
+  font-size: var(--normal-font-size);
+  color: var(--text-dark);
 }
 
 .main {

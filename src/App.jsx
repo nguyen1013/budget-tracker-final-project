@@ -1,4 +1,4 @@
-import { useContext, useOptimistic, useState } from "react";
+import { useContext, useOptimistic } from "react";
 import "./budgettracker.css";
 import TransactionForm from "./components/TransactionForm";
 import TransactionList from "./components/TransactionList";
@@ -8,7 +8,6 @@ import { BudgetContext } from "./context/BudgetContext";
 
 function App() {
   const { transactions, isLoading } = useContext(BudgetContext);
-  const [chartType, setChartType] = useState("pie");
 
   const [optimisticTransactions, setOptimisticTransactions] = useOptimistic(
     transactions,
@@ -24,6 +23,7 @@ function App() {
       <header>
         <h1>Online Environment Tools - Final Project</h1>
       </header>
+      
       <div className="main">
         <div className="container">
           <h1>Budget Tracker</h1>
@@ -32,27 +32,16 @@ function App() {
             setOptimisticTransactions={setOptimisticTransactions}
           />
         </div>
-        <div className="chart">
-          <div className="chart-selector">
-            <label htmlFor="chartType">Choose chart type: </label>
-            <select
-              id="chartType"
-              value={chartType}
-              onChange={(e) => setChartType(e.target.value)}
-            >
-              <option value="pie">Expenses by Category (Pie)</option>
-              <option value="bar">Monthly Income vs Expense (Bar)</option>
-              <option value="line">Savings Over Time (Line)</option>
-            </select>
-          </div>
 
-          {/* Chart Display */}
-          <ChartContainer chartType={chartType} transactions={transactions} />
-        </div>
+        <ChartContainer />
+
       </div>
+
       <hr></hr>
+
       <TransactionList optimisticTransactions={optimisticTransactions} />
-      <footer>Vaasa University of Applied Sciences - IT2023B<br></br>Made by Nguyen Nguyen</footer>  
+
+      <footer>Vaasa University of Applied Sciences - IT2023B<br></br>Made by Nguyen Nguyen</footer>
     </div>
   );
 }

@@ -1,9 +1,13 @@
+import { useContext } from "react";
+import { BudgetContext } from "../../context/BudgetContext";
 import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, BarElement, CategoryScale, LinearScale, Legend, Tooltip } from 'chart.js';
 
 ChartJS.register(BarElement, CategoryScale, LinearScale, Legend, Tooltip);
 
-export default function BarChart({ transactions }) {
+export default function BarChart() {
+  const { transactions } = useContext(BudgetContext);
+
   const monthlyData = {};
 
   transactions.forEach(t => {

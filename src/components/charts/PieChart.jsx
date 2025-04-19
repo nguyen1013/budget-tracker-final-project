@@ -1,9 +1,13 @@
+import { useContext } from "react";
+import { BudgetContext } from "../../context/BudgetContext";
 import { Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-export default function PieChart({ transactions }) {
+export default function PieChart() {
+  const { transactions } = useContext(BudgetContext);
+
   const expenseData = transactions.filter(t => t.type === 'expense');
 
   const categorySums = expenseData.reduce((acc, t) => {
