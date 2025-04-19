@@ -31,10 +31,6 @@
   --weight-800: 800;
 }
 
-.dark-theme {
-
-}
-
 body {
   font-family: var(--body-font);  
   background-color: var(--background-color);
