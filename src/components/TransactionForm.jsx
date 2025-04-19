@@ -97,13 +97,13 @@ export default function TransactionForm({ setOptimisticTransactions }) {
         <label htmlFor="category">Category</label>
         <select id="category" name="category">
           <option value="salary">Salary</option>
-          <option value="gasoline">Transportation</option>
+          <option value="transportation">Transportation</option>
           <option value="food">Food</option>
-          <option value="magazines">Subscription</option>
-          <option value="magazines">Clothing</option>
-          <option value="magazines">Groceries</option>
-          <option value="magazines">Entertainment</option>
-          <option value="magazines">Other</option>
+          <option value="subscription">Subscription</option>
+          <option value="clothing">Clothing</option>
+          <option value="groceries">Groceries</option>
+          <option value="entertainment">Entertainment</option>
+          <option value="other">Other</option>
         </select>
 
         <SubmitButton />
