@@ -5,6 +5,7 @@
   --first-color: #002F6C;
   --second-color: #D1DDEB; /* #f4f6f8*/
   --third-color: #215389;
+  --fourth-color: #EBEBEB;
   --body-color: #f4f6f8;
   --background-color: #F2F2F0;
   --container-color: #ededed;
@@ -147,7 +148,7 @@ button:hover {
 }
 
 .transaction-list li {
-  background-color: var(--second-color);
+  background-color: var(--fourth-color);
   padding: 10px;
   border: 1px solid #bbb;
   border-radius: 5px;
@@ -166,7 +167,7 @@ button:hover {
 }
 
 .transaction-list li:hover {
-  background-color: #A3C7F5;
+  background-color: var(--second-color);
   transition: background-color 0.3s ease;
 }
 
