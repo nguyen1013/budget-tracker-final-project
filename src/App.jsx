@@ -33,7 +33,6 @@ function App() {
           />
         </div>
         <div className="chart">
-          {/* Chart Type Selector */}
           <div className="chart-selector">
             <label htmlFor="chartType">Choose chart type: </label>
             <select
@@ -51,6 +50,7 @@ function App() {
           <ChartContainer chartType={chartType} transactions={transactions} />
         </div>
       </div>
+      <hr></hr>
       <TransactionList optimisticTransactions={optimisticTransactions} />
       <footer>Vaasa University of Applied Sciences - IT2023B<br></br>Made by Nguyen Nguyen</footer>  
     </div>

@@ -65,12 +65,12 @@ export default function TransactionList({ optimisticTransactions }) {
 
         <label>
           Min Amount:
-          <input type="number" value={minAmount} onChange={(e) => setMinAmount(e.target.value)} />
+          <input type="number" className="filter-amount" value={minAmount} onChange={(e) => setMinAmount(e.target.value)} />
         </label>
 
         <label>
           Max Amount:
-          <input type="number" value={maxAmount} onChange={(e) => setMaxAmount(e.target.value)} />
+          <input type="number" className="filter-amount" value={maxAmount} onChange={(e) => setMaxAmount(e.target.value)} />
         </label>
       </div>
 
