@@ -55,6 +55,7 @@ header, footer {
   background-color: var(--first-color);
   color: var(--text-white);
   padding: 5px 0;
+  font-weight: var(--weight-500);
 }
 
 header h1 {
@@ -77,6 +78,7 @@ h1 {
   margin-bottom: var(--normal-font-size);
   font-size: var(--large-font-size);
   color: var(--text-dark);
+  font-weight: var(--weight-600);
 }
 
 .balance-box {
@@ -90,11 +92,12 @@ h1 {
 .balance-box h3 {
   margin: 0;
   font-size: var(--normal-font-size);
+  font-weight: var(--weight-500);
 }
 
 #balance {
   font-size: var(--large-font-size);
-  font-weight: bold;
+  font-weight: var(--weight-500);
   margin: 10px 0;
 }
 
@@ -102,13 +105,13 @@ form {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin-bottom: var(--normal-font-size);
 }
 
 label {
-  font-weight: bold;
+  padding-top: 5px;
+  font-weight: var(--weight-500);
   text-align: left;
-  color: var(--text-dark);
+  color: var(--text-dark);  
 }
 
 input, select {
@@ -149,6 +152,8 @@ button:hover {
 
 .transaction-list li {
   background-color: var(--fourth-color);
+  color: var(--text-dark);
+  font-weight: var(--weight-400);
   padding: 10px;
   border: 1px solid #bbb;
   border-radius: 5px;
@@ -188,6 +193,7 @@ button:hover {
   flex-direction: column;
   font-size: 0.9rem;
   color: var(--text-dark);
+  font-weight: var(--weight-500);
 }
 
 .filters input, select {
@@ -244,6 +250,7 @@ button:hover {
 .chart-selector label {
   font-size: var(--normal-font-size);
   color: var(--text-dark);
+  font-weight: var(--weight-500);
 }
 
 .main {
@@ -265,7 +272,7 @@ button:hover {
   margin-bottom: 0;
   padding-bottom: var(--tiny-font-size);
   font-size: var(--larger-font-size);
-  font-weight: var(--weight-700);
+  font-weight: var(--weight-500);
 }
 
 @media only screen and (max-width: 950px) {
