@@ -80,13 +80,13 @@ export default function Transaction({ transaction }) {
           </form>
         ) : (
           <>
-            <div className="transaction-description"
+            <div className="transaction-item"
               onClick={() => setIsEditing(true)}
               style={{ cursor: "pointer" }}
             >
-              <p>{transaction.description}{" "}</p>
-              <p>{currentAmount}€</p>
-              <p>{formattedDate} </p>
+              <p className="transaction-description">{transaction.description}{" "}</p>
+              <p className="transaction-amount">{currentAmount}€</p>
+              <p className="transaction-date">{formattedDate} </p>
             </div>                   
             <button onClick={() => setShowConfirm(true)}>X</button>
           </>
