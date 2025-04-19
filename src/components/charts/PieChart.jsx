@@ -7,14 +7,15 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 const categoryColors = {
   salary: "#4CAF50",
-  transportation: "#FF6384",
-  food: "#36A2EB",
-  subscription: "#FFCE56",
+  transportation: "#FF676A",
+  food: "#4caf50",
+  subscription: "#F5E91F",
   clothing: "#1A5AC0",
-  groceries: "#FFA07A",
-  entertainment: "#8A2BE2",
-  other: "#D3D3D3"
+  groceries: "#FF8066",
+  entertainment: "#D93BAF",
+  other: "#8AD2F5"
 };
+
 
 export default function PieChart() {
   const { transactions } = useContext(BudgetContext);
