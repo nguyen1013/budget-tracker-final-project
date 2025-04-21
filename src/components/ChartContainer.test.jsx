@@ -2,7 +2,6 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { BudgetContext } from "../context/BudgetContext";
 import ChartContainer from "./ChartContainer";
-import { vi } from "vitest"; // Importing vi from vitest
 
 // Mock PieChart, BarChart, and LineChart components
 vi.mock("./charts/PieChart", () => ({
