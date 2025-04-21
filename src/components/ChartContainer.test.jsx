@@ -16,11 +16,9 @@ vi.mock("./charts/LineChart", () => ({
 
 describe("ChartContainer", () => {
   const mockTransactions = [
-    { id: 1, date: '2023-04-10', type: 'income', amount: 500 },
-    { id: 2, date: '2023-04-15', type: 'expense', amount: 200 },
-    { id: 3, date: '2023-05-10', type: 'income', amount: 700 },
-    { id: 4, date: '2023-05-20', type: 'expense', amount: 300 },
-    { id: 5, date: '2023-06-05', type: 'income', amount: 900 },
+    { id: 1, date: '2025-02-10', type: 'income', amount: 500 },
+    { id: 2, date: '2025-03-15', type: 'expense', amount: 200 },
+    { id: 3, date: '2025-04-10', type: 'income', amount: 700 },
   ];
 
   const setChartTypeMock = vi.fn();

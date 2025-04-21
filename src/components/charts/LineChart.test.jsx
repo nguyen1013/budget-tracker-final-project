@@ -1,13 +1,14 @@
 import { render, screen } from '@testing-library/react';
 import { BudgetContext } from '../../context/BudgetContext';
-import BarChart from './BarChart';
+import LineChart from './LineChart';
+import { vi, test, describe, expect } from 'vitest';
 
-// Mock the Bar chart
+// Mock the Line chart 
 vi.mock('react-chartjs-2', () => ({
-  Bar: () => <div>Mock BarChart</div>,
+  Line: () => <div>Mock LineChart</div>,
 }));
 
-describe('BarChart', () => {
+describe('LineChart', () => {
   const mockTransactions = [
     { id: 1, date: '2025-02-10', type: 'income', amount: 500 },
     { id: 2, date: '2025-03-15', type: 'expense', amount: 200 },
@@ -17,13 +18,13 @@ describe('BarChart', () => {
   const renderWithContext = (transactions) =>
     render(
       <BudgetContext.Provider value={{ transactions }}>
-        <BarChart />
+        <LineChart />
       </BudgetContext.Provider>
     );
 
-  test('renders mock BarChart component', () => {
+  test('renders mock LineChart component', () => {
     renderWithContext(mockTransactions);
-    expect(screen.getByText('Mock BarChart')).toBeInTheDocument();
+    expect(screen.getByText('Mock LineChart')).toBeInTheDocument();
   });
   
 });
