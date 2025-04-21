@@ -48,20 +48,28 @@ body {
   max-width: 950px;
 }
 
-header, footer {
-  min-height: var(--larger-font-size);
+header, footer {  
   width: 100%;
   text-align: center;
   background-color: var(--first-color);
   color: var(--text-white);
-  padding: 5px 0;
   font-weight: var(--weight-500);
+}
+
+header {
+  padding-top: 4px;
+  padding-bottom: 5px;
 }
 
 header h1 {
   color: var(--text-white);
   font-size: var(--larger-font-size);
   font-weight: var(--weight-700);
+}
+
+footer {
+  min-height: var(--larger-font-size);
+  padding: 5px 0;
 }
 
 .container {
