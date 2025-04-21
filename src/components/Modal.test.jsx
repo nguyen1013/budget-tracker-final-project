@@ -1,26 +1,6 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
 import Modal from './Modal';
 import Error from './Error';
-
-beforeAll(() => {
-  // mock dialog methods in JSDOM
-  HTMLDialogElement.prototype.showModal = vi.fn();
-  HTMLDialogElement.prototype.close = vi.fn();
-});
-
-beforeEach(() => {
-  const modalRoot = document.createElement('div');
-  modalRoot.setAttribute('id', 'modal');
-  document.body.appendChild(modalRoot);
-});
-
-afterEach(() => {
-  const modalRoot = document.getElementById('modal');
-  if (modalRoot) {
-    document.body.removeChild(modalRoot);
-  }
-});
 
 describe('Modal component', () => {
   test('renders children when open is true', () => {
@@ -53,7 +33,8 @@ describe('Modal component', () => {
     );
 
     const dialog = document.querySelector('dialog');
-    dialog.dispatchEvent(new Event('close')); 
+    dialog.dispatchEvent(new Event('close'));
+
     expect(handleClose).toHaveBeenCalled();
   });
 });
