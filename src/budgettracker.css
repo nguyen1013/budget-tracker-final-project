@@ -3,11 +3,11 @@
 :root {
   /* Colors */
   --first-color: #002F6C;
-  --second-color: #D1DDEB; /* #f4f6f8*/
+  --second-color: #CCE2FF; /* #f4f6f8*/
   --third-color: #215389;
-  --fourth-color: #EBEBEB;
+  --fourth-color: #E5F1FF;
   --body-color: #f4f6f8;
-  --background-color: #F2F2F0;
+  --background-color: #fff;
   --container-color: #ededed;
   --text-white: #fefefe;
   --text-black: #1a1a1a;
@@ -45,7 +45,7 @@ body {
 }
 
 .body-container {
-  max-width: 925px;
+  max-width: 950px;
 }
 
 header, footer {
@@ -87,6 +87,14 @@ h1 {
   padding: 10px;
   border-radius: 5px;
   margin-bottom: 20px;
+}
+
+.main {
+  display: flex;
+  column-gap: var(--normal-font-size);
+  text-align: center;
+  background-color:var(--body-color);
+  padding: var(--normal-font-size) var(--normal-font-size) ;
 }
 
 .balance-box h3 {
@@ -144,6 +152,12 @@ button:hover {
   transition: background-color 0.3s ease;  
 }
 
+.transaction-container {
+  background-color: var(--body-color);
+  padding: 0 var(--normal-font-size) ;
+  padding-bottom: 10px;
+}
+
 .transaction-list {
   list-style-type: none;
   padding: 0;
@@ -157,7 +171,7 @@ button:hover {
   padding: 10px;
   border: 1px solid #bbb;
   border-radius: 5px;
-  margin-bottom: 10px;
+  margin-top: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -211,11 +225,6 @@ button:hover {
   color: #333;
 }
 
-.transaction-container {
-  background-color: var(--body-color);
-  padding: 0 var(--normal-font-size) ;
-}
-
 .transaction-item {
   display: flex;
   justify-content: space-between;
@@ -253,14 +262,6 @@ button:hover {
   font-weight: var(--weight-500);
 }
 
-.main {
-  display: flex;
-  column-gap: var(--normal-font-size);
-  text-align: center;
-  background-color:var(--body-color);
-  padding: var(--normal-font-size) var(--normal-font-size) ;
-}
-
 .chart {
   width: 50%;
 }
@@ -270,7 +271,7 @@ button:hover {
   color: var(--text-dark);
   margin-top: 0;
   margin-bottom: 0;
-  padding-bottom: var(--tiny-font-size);
+  padding: var(--tiny-font-size) 0;
   font-size: var(--larger-font-size);
   font-weight: var(--weight-500);
 }
@@ -295,8 +296,20 @@ button:hover {
 }
 
 @media only screen and (max-width: 600px) {
+  header h1 {
+    font-size: var(--large-font-size);
+  }
+
   .transaction-item {
-    width:280px;
+    width:300px;
   }  
+
+  .transaction-item p {
+    font-size: var(--smaller-font-size);
+  }
+  .transaction-container {
+    padding: 0;
+  }
+
 }
 
