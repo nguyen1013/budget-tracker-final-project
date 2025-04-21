@@ -103,7 +103,7 @@ export default function TransactionList({ optimisticTransactions }) {
       </div>
 
       {filteredTransactions && filteredTransactions.length > 0 ? (
-        <ul className="transaction-list">
+        <ul className="transaction-list" role="list"> 
           {filteredTransactions.map((transaction) => (
             <Transaction key={transaction.id} transaction={transaction} />
           ))}
