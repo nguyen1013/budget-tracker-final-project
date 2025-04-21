@@ -19,9 +19,9 @@ export default function ChartContainer() {
           value={chartType}
           onChange={(e) => setChartType(e.target.value)}
         >
-          <option value="pie">Expenses by Category (Pie)</option>
-          <option value="bar">Monthly Income vs Expense (Bar)</option>
-          <option value="line">Savings Over Time (Line)</option>
+          <option value="pie">Expenses by Category</option>
+          <option value="bar">Monthly Income vs Expense</option>
+          <option value="line">Savings Over Time</option>
         </select>
       </div>
 
