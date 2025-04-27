@@ -343,14 +343,4 @@ button:hover {
   .transaction-container {
     padding: 0;
   }
-
-}
-
-  .transaction-item p {
-    font-size: var(--smaller-font-size);
-  }
-  .transaction-container {
-    padding: 0;
-  }
-
 }
