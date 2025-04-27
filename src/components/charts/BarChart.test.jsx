@@ -3,7 +3,7 @@ import { BudgetContext } from '../../context/BudgetContext';
 import BarChart from './BarChart';
 
 // Mock the Bar chart
-vi.mock('Mock BarChart', () => ({
+vi.mock('react-chartjs-2', () => ({
   Bar: () => <div>Mock BarChart</div>,
 }));
 

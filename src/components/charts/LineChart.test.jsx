@@ -4,7 +4,7 @@ import LineChart from './LineChart';
 import { vi, test, describe, expect } from 'vitest';
 
 // Mock the Line chart 
-vi.mock('Mock LineChart', () => ({
+vi.mock('react-chartjs-2', () => ({
   Line: () => <div>Mock LineChart</div>,
 }));
 
