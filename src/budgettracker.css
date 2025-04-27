@@ -4,9 +4,12 @@
   /* Colors */
   --first-color: #002F6C;
   --second-color: #CCE2FF; /* #f4f6f8*/
+  --second-color: #CCE2FF; /* #f4f6f8*/
   --third-color: #215389;
   --fourth-color: #E6F1FF;
+  --fourth-color: #E6F1FF;
   --body-color: #f4f6f8;
+  --background-color: #fff;
   --background-color: #fff;
   --container-color: #ededed;
   --text-white: #fefefe;
@@ -46,22 +49,31 @@ body {
 
 .body-container {
   max-width: 950px;
+  max-width: 950px;
 }
 
-header, footer {
-  min-height: var(--larger-font-size);
+header, footer {  
   width: 100%;
   text-align: center;
   background-color: var(--first-color);
   color: var(--text-white);
-  padding: 5px 0;
   font-weight: var(--weight-500);
+}
+
+header {
+  padding-top: 4px;
+  padding-bottom: 5px;
 }
 
 header h1 {
   color: var(--text-white);
   font-size: var(--larger-font-size);
   font-weight: var(--weight-700);
+}
+
+footer {
+  min-height: var(--larger-font-size);
+  padding: 5px 0;
 }
 
 .container {
@@ -87,6 +99,14 @@ h1 {
   padding: 10px;
   border-radius: 5px;
   margin-bottom: 20px;
+}
+
+.main {
+  display: flex;
+  column-gap: var(--normal-font-size);
+  text-align: center;
+  background-color:var(--body-color);
+  padding: var(--normal-font-size) var(--normal-font-size) ;
 }
 
 .main {
@@ -158,6 +178,12 @@ button:hover {
   padding-bottom: 10px;
 }
 
+.transaction-container {
+  background-color: var(--body-color);
+  padding: 0 var(--normal-font-size) ;
+  padding-bottom: 10px;
+}
+
 .transaction-list {
   list-style-type: none;
   padding: 0;
@@ -171,6 +197,7 @@ button:hover {
   padding: 10px;
   border: 1px solid #bbb;
   border-radius: 5px;
+  margin-top: 10px;
   margin-top: 10px;
   display: flex;
   justify-content: space-between;
@@ -272,6 +299,7 @@ button:hover {
   margin-top: 0;
   margin-bottom: 0;
   padding: var(--tiny-font-size) 0;
+  padding: var(--tiny-font-size) 0;
   font-size: var(--larger-font-size);
   font-weight: var(--weight-500);
 }
@@ -300,9 +328,23 @@ button:hover {
     font-size: var(--large-font-size);
   }
 
+  header h1 {
+    font-size: var(--large-font-size);
+  }
+
   .transaction-item {
     width:300px;
+    width:300px;
   }  
+
+  .transaction-item p {
+    font-size: var(--smaller-font-size);
+  }
+  .transaction-container {
+    padding: 0;
+  }
+
+}
 
   .transaction-item p {
     font-size: var(--smaller-font-size);
