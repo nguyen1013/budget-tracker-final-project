@@ -3,7 +3,7 @@ import { BudgetContext } from "../../context/BudgetContext";
 import PieChart from "./PieChart";
 
 // Mock the Pie chart
-vi.mock("react-chartjs-2", () => ({
+vi.mock("Mock PieChart", () => ({
   Pie: () => <div>Mock PieChart</div>,
 }));
 
